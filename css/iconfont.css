@@ -1,0 +1,33 @@
+
+@font-face {
+	font-family: "music-icon";
+  src:url('../fonts/iconfont.ttf?t=1495676018630') format('truetype');
+}
+
+.music-icon {
+  font-family:"music-icon" !important;
+  font-size: 1.6em;
+  font-weight: 400;
+	font-style: normal;
+	line-height: 1;
+	display: inline-block;
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.music-icon-music:before { content: "\e63d"; }
+
+.music-icon-diantaibofang:before { content: "\e6a9"; }
+
+.music-icon-paixingbang:before { content: "\e6bf"; }
+
+.music-icon-touxiang:before { content: "\e64a"; }
+
+.music-icon-yinle:before { content: "\e6b7"; }
+
+.music-icon-fenlei:before { content: "\e67c"; }
+
+.music-icon-shipin:before { content: "\e8b3"; }
+
+.music-icon-zhuanji:before { content: "\e638"; }
+

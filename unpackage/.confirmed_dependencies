@@ -1,0 +1,63 @@
+{
+	"index.html": {
+		"resources": [
+			"images/2.jpg",
+			"js/jquery.min.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"images/1.jpg",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"fonts/iconfont.ttf",
+			"images/3.jpg",
+			"images/4.jpg",
+			"images/hot1.png",
+			"images/hot2.png",
+			"images/hot3.png",
+			"images/hot4.png",
+			"images/hot5.png",
+			"images/hot6.png",
+			"images/dzq.png",
+			"images/play.png",
+			"js/template-web.js",
+			"pages/list.html"
+		],
+		"refer": [
+			"pages/list.html",
+			"pages/songPage.html"
+		]
+	},
+	"pages/list.html": {
+		"resources": [
+			"js/jquery.min.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"js/template-web.js",
+			"css/mui.min.css",
+			"fonts/iconfont.ttf",
+			"images/hot5.png",
+			"images/2.jpg",
+			"images/hot2.png",
+			"images/hot4.png",
+			"images/3.jpg",
+			"images/hot3.png",
+			"images/4.jpg",
+			"images/hot1.png",
+			"images/1.jpg",
+			"images/hot6.png",
+			"images/play.png"
+		]
+	},
+	"pages/songPage.html": {
+		"resources": [
+			"images/bg.png",
+			"js/jquery.min.js",
+			"js/mui.min.js",
+			"css/iconfont.css",
+			"js/template-web.js",
+			"css/mui.min.css",
+			"fonts/iconfont.ttf"
+		]
+	}
+}

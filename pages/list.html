@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<style>
+	    	.mui-search{
+	    		margin: 6px;
+	    	}
+	    	.nav-my-icon {
+			    font-family: Muiicons;
+			    font-size: 1.6em;
+			    font-weight: 400;
+			    font-style: normal;
+			    line-height: 1;
+			    display: inline-block;
+			    text-decoration: none;
+			    -webkit-font-smoothing: antialiased;
+			}
+			.icon-bar{}
+			.icon-bar > li{
+				padding: 0px!important;
+			}
+			.icon-bar > li >a{
+				padding-bottom: 0px!important;
+			}
+			.title-css{
+				text-align: center;
+				margin: 0px auto;
+				font-size: 1em;
+				color: #555555;
+				font-weight: bold;
+			}
+			.mui-card{
+				margin: 0px;
+				margin-top: 0.6em;
+			}
+	    </style>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	    <script type="text/html" id="songList">
+	    	{{each lists v}}
+	    	<li class="mui-table-view-cell mui-media">
+		        <a href="http://www.kugou.com/yy/special/single/{{v.specialid}}.html">
+		            <img class="mui-media-object mui-pull-left" src="{{v.img}}">
+		           	<img class="mui-media-object mui-pull-right" src="../images/play.png">
+		            <div class="mui-media-body">
+		                	{{v.nickname}}
+		                <p class="mui-ellipsis">{{v.specialname}}</p>
+		            </div>
+		        </a>
+		    </li>
+		    {{/each}}
+	    </script>
+    	<script type="text/javascript" src="../js/template-web.js" ></script>
+		<script type="text/javascript">
+			mui.init()
+			$(function(){
+	      		mui("#slider").slider({
+				  interval:1000//自动轮播周期，若为0则不自动播放，默认为0,  轮播时间是毫秒单位；
+				});
+				// url = http://specialsearch.kugou.com/special_search
+				// keyword = 关键字 
+				// page= 查询第几页
+				// pagesize= 每页显示多少条
+				
+				mui.ajax({
+					url:"http://specialsearch.kugou.com/special_search",
+					type:"get",
+					data:{"keyword":"回眸一笑","page":1,"pagesize":20},
+					dataType:"json",
+					success:function(data){
+						//console.log(data);
+						var htmlstr = template("songList",data.data);
+						$("#slist").html(htmlstr);
+					}
+				});
+	      	});
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<!-- 搜索 -->
+			<div class="mui-input-row mui-search">
+				<input type="search" class="mui-input-clear" placeholder="输入查询" />
+			</div>
+			<!-- 图片轮播 -->
+			<div id="slider" class="mui-slider" >
+			  <div class="mui-slider-group mui-slider-loop">
+			    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+			    <div class="mui-slider-item mui-slider-item-duplicate">
+			      <a href="#">
+			        <img src="../images/4.jpg">
+			      </a>
+			    </div>
+			    <!-- 第一张 -->
+			    <div class="mui-slider-item">
+			      <a href="#">
+			        <img src="../images/1.jpg">
+			      </a>
+			    </div>
+			    <!-- 第二张 -->
+			    <div class="mui-slider-item">
+			      <a href="#">
+			        <img src="../images/2.jpg">
+			      </a>
+			    </div>
+			    <!-- 第三张 -->
+			    <div class="mui-slider-item">
+			      <a href="#">
+			        <img src="../images/3.jpg">
+			      </a>
+			    </div>
+			    <!-- 第四张 -->
+			    <div class="mui-slider-item">
+			      <a href="#">
+			        <img src="../images/4.jpg">
+			      </a>
+			    </div>
+			    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+			    <div class="mui-slider-item mui-slider-item-duplicate">
+			      <a href="#">
+			        <img src="../images/1.jpg">
+			      </a>
+			    </div>
+			  </div>
+			  <div class="mui-slider-indicator">
+			    <div class="mui-indicator mui-active"></div>
+			    <div class="mui-indicator"></div>
+			    <div class="mui-indicator"></div>
+			    <div class="mui-indicator"></div>
+			  </div>
+			</div>
+			
+			<!-- 导航九宫格 -->
+			<ul class="mui-table-view mui-grid-view mui-grid-9 icon-bar">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+				    <a href="#">
+				        <span class="nav-my-icon music-icon music-icon-touxiang"></span>
+				        <div class="mui-media-body">头像</div>
+				    </a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+				    <a href="#">
+				        <span class="nav-my-icon music-icon music-icon-paixingbang"></span>
+				        <div class="mui-media-body">排行榜</div>
+				    </a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+				    <a href="#">
+				        <span class="nav-my-icon music-icon music-icon-diantaibofang"></span>
+				        <div class="mui-media-body">电台</div>
+				    </a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+				    <a href="#">
+				        <span class="nav-my-icon  music-icon music-icon-fenlei"></span>
+				        <div class="mui-media-body">分类</div>
+				    </a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+				    <a href="#">
+				        <span class="nav-my-icon  music-icon music-icon-shipin"></span>
+				        <div class="mui-media-body">MV</div>
+				    </a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+				    <a href="#">
+				        <span class="nav-my-icon  music-icon music-icon-zhuanji"></span>
+				        <div class="mui-media-body">专辑</div>
+				    </a>
+				</li>
+			</ul>
+			
+			<!-- 卡片选项 -->
+			<div class="mui-card">
+				<div class="mui-card-header">
+					<span class="title-css">热门推荐</span>
+				</div>
+				<div class="mui-card-content">
+					<ul class="mui-table-view mui-grid-view mui-grid-9 icon-bar">
+						<li class="mui-table-view-cell mui-media mui-col-xs-4">
+						    <a href="#">
+						        <img src="../images/hot1.png"/>
+						        <div class="mui-media-body">最受欢迎的女歌手</div>
+						    </a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 ">
+						    <a href="#">
+						        <img src="../images/hot2.png"/>
+						        <div class="mui-media-body">童话镇</div>
+						    </a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 ">
+						    <a href="#">
+						        <img src="../images/hot3.png"/>
+						        <div class="mui-media-body">点击过万的歌曲</div>
+						    </a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 ">
+						    <a href="#">
+						        <img src="../images/hot4.png"/>     
+						        <div class="mui-media-body">华语经典</div>
+						    </a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 ">
+						    <a href="#">
+						        <img src="../images/hot5.png"/>
+						        <div class="mui-media-body">英语热榜</div>
+						    </a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-4 ">
+						    <a href="#">
+						        <img src="../images/hot6.png"/>
+						        <div class="mui-media-body">日韩流行</div>
+						    </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="mui-card">
+				<div class="mui-card-header">
+					<span class="title-css">怀旧专辑</span>
+				</div>
+				<div class="mui-card-content">
+					<ul class="mui-table-view" id="slist">
+					    
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+
+</html>

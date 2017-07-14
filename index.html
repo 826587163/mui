@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/iconfont.css" />
+    <script src="js/mui.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js" ></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	// 用于存放webview的子页面的相关信息
+      	var pageUrls = {
+      		listpage:{
+      			pageUrl:"pages/list.html",
+      			pageTitle:"首页"
+      		},
+      		songlist:{
+      			pageUrl:"pages/songPage.html",
+      			pageTitle:"音乐列表"
+      		}
+      		
+      	};
+      	
+      	//用于在当前页面中装载子页面
+      	mui.plusReady(function(){
+      		// 1、需要获取当前页面的webview窗口
+      		//   plus 对象  指的是整个应用程序的窗口对象
+      		// console.log(plus);
+      		//   webview 当前程序窗口中的  webview管理工具
+      		//		currentWebview()   用于获取当前页面的webview对象
+      		var self = plus.webview.currentWebview();
+      		
+      		// 2、子页面的初始化
+      		for(var page in pageUrls){
+      			//console.log(pageUrls[page].pageUrl);
+      			//create(url, id , 设置参数)
+      			// id 为每一个子页面创建一个 独有的标识
+      			// 该标识是一个对象
+      			var subpage = plus.webview.create(pageUrls[page].pageUrl,page,{
+      				top:"45px", // 指的是 子页面装载到主页中时  子页面的顶端距离主页面顶端的间距
+      				bottom:"51px"// 指的是 子页面装载到主页中时  子页面的底端距离主页面底端的间距
+      			});
+      			// 2.1、设置  子页面  初始化后的显示状态
+      			// hide() 设置当前页面处于隐藏状态
+      			if(page!="listpage"){
+      				subpage.hide();
+      			}
+      			
+      			// 3、将子页面加载到 主页面中
+      			self.append(subpage);
+      		}
+      		
+      		
+      	});
+      	
+      	var actionPage = "listpage";
+      	
+      	$(function(){
+      		mui("#pageTo").on("tap","a",function(){
+      			var titlestr = $(this).find(".mui-tab-label").html();
+      			var pageId = $(this).attr("name");
+      			//console.log(pageId);
+      			//console.log(titlestr);
+      			$(".mui-title").html(titlestr);
+      			
+      			// 根据给定的子页面的id(对象)执行相关的显示或隐藏效果
+      			plus.webview.show(pageId);
+      			plus.webview.hide(actionPage);
+      			
+      			actionPage = pageId;
+      		});
+      	})
+      	
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title">首页</h1>
+	</header>
+	
+	<nav class="mui-bar mui-bar-tab" id="pageTo">
+	    <a class="mui-tab-item mui-active" name="listpage">
+	        <span class="mui-icon mui-icon-home"></span>
+	        <span class="mui-tab-label">首页</span>
+	    </a>
+	    <a class="mui-tab-item" name="songlist">
+	        <span class="mui-icon music-icon music-icon-music"></span>
+	        <span class="mui-tab-label">音乐</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-gear"></span>
+	        <span class="mui-tab-label">设置</span>
+	    </a>
+	</nav>
+
+</body>
+</html>
